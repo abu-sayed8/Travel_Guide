@@ -1,189 +1,33 @@
 {
   "project_info": {
-    "project_number": "792441450073",
-    "project_id": "shopapi-17c26",
-    "storage_bucket": "shopapi-17c26.appspot.com"
+    "project_number": "208469755313",
+    "project_id": "travel-app-9e045",
+    "storage_bucket": "travel-app-9e045.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:792441450073:android:4cf7a5e35011aa09448b48",
+        "mobilesdk_app_id": "1:208469755313:android:eba64815152ffd5b226990",
         "android_client_info": {
-          "package_name": "com.abusayed.chatapp"
+          "package_name": "com.abusayed.travel_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "792441450073-1ibj1oqc7tsf2pnjul3i90f3cu5r8v9i.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.abusayed.chatapp",
-            "certificate_hash": "2250f0c20630b7f2c1ae05985dd700b3eaf28d15"
-          }
-        },
-        {
-          "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
+          "client_id": "208469755313-gk5eoetgm9275cn3bgj93s5urrke6ecq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGkbsVQuvn1J2riNP-WrhA7PDfdYuOBfY"
+          "current_key": "AIzaSyB1kLjjwdR_WvakElVLRsT1mem94GX8O3k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:792441450073:android:e48f1f81f13fc36f448b48",
-        "android_client_info": {
-          "package_name": "com.abusayed.shopapi"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "792441450073-b4hfjvhhpaf9jesfc2h96o2t6mrak8t0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.abusayed.shopapi",
-            "certificate_hash": "2250f0c20630b7f2c1ae05985dd700b3eaf28d15"
-          }
-        },
-        {
-          "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCGkbsVQuvn1J2riNP-WrhA7PDfdYuOBfY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:792441450073:android:4d29f8bf7a60b5d8448b48",
-        "android_client_info": {
-          "package_name": "com.abusayed.travel_guaid"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "792441450073-qchceqigbdrbd7pd1q2plfhb8pj5ndha.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.abusayed.travel_guaid",
-            "certificate_hash": "2250f0c20630b7f2c1ae05985dd700b3eaf28d15"
-          }
-        },
-        {
-          "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCGkbsVQuvn1J2riNP-WrhA7PDfdYuOBfY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:792441450073:android:fc76db168382dd5f448b48",
-        "android_client_info": {
-          "package_name": "com.dakterbari.admin_panel"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "792441450073-13gs1ee95ujo1geucsu2dn2qhkgegmbo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dakterbari.admin_panel",
-            "certificate_hash": "2250f0c20630b7f2c1ae05985dd700b3eaf28d15"
-          }
-        },
-        {
-          "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCGkbsVQuvn1J2riNP-WrhA7PDfdYuOBfY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:792441450073:android:470ef326df3aa8bb448b48",
-        "android_client_info": {
-          "package_name": "com.example.travel_app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "792441450073-mumg27nd3j084t8ghjf5bmm3botkf27s.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.travel_app",
-            "certificate_hash": "2250f0c20630b7f2c1ae05985dd700b3eaf28d15"
-          }
-        },
-        {
-          "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCGkbsVQuvn1J2riNP-WrhA7PDfdYuOBfY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "792441450073-m3cp5qktacljnfptboiplk2nuccc2qhn.apps.googleusercontent.com",
+              "client_id": "208469755313-gk5eoetgm9275cn3bgj93s5urrke6ecq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
