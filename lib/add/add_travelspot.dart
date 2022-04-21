@@ -234,7 +234,8 @@ class _AddTravelSpotState extends State<AddTravelSpot> {
   Widget _textFieldBuilder(String hintTxt, TravelProvider travelProvider) {
     Size size = MediaQuery.of(context).size;
     return TextFormField(
-      keyboardType: TextInputType.text,
+      keyboardType: hintTxt == 'latitude' || hintTxt == 'longitude'?TextInputType.number
+          :TextInputType.text,
       maxLines: hintTxt == 'Description' ? 5 : 1,
       scrollPhysics: ScrollPhysics(),
       // textAlign: TextAlign.start,

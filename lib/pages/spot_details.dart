@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:collection';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_app/travel_provider/travel_provider.dart';
 import 'package:travel_app/widgets/appbardecoration.dart';
 
 class SpotDetails extends StatefulWidget {
   String? spotname;
   String? image;
   String? description;
+  String? travelspot;
   String? latitude;
   String? longitude;
 
@@ -14,6 +17,7 @@ class SpotDetails extends StatefulWidget {
     this.spotname,
     this.image,
     this.description,
+    this.travelspot,
     this.latitude,
     this.longitude,
   });
@@ -26,7 +30,7 @@ class _SpotDetailsState extends State<SpotDetails> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   Set<Marker> _marker = HashSet<Marker>();
   static GoogleMapController? _mapController;
-
+  int _counter=0;
   void _onMapCreated(GoogleMapController controller) {
     setState(() {
       _marker.add(Marker(
@@ -55,11 +59,21 @@ class _SpotDetailsState extends State<SpotDetails> {
   //   super.initState();
   //   _onMapCreated(_mapController!);
   // }
+
+  void _customInitState(TravelProvider travelProvider){
+    setState(() {
+      _counter++;
+    });
+    travelProvider.getHotelAndResortWithTravelSpot("${widget.travelspot}");
+  }
+
   @override
   Widget build(BuildContext context) {
+    final TravelProvider travelProvider=Provider.of<TravelProvider>(context);
+    if(_counter==0)_customInitState(travelProvider);
     return Scaffold(
       appBar: appBarDecoration(context, 'Spot Details'),
-      body: _bodyUI(),
+      body: _bodyUI(travelProvider),
         floatingActionButton: new FloatingActionButton(
             elevation: 0.0,
             child: new Icon(Icons.location_pin),
@@ -69,7 +83,7 @@ class _SpotDetailsState extends State<SpotDetails> {
     );
   }
 
-  Widget _bodyUI() {
+  Widget _bodyUI(TravelProvider travelProvider) {
     return ListView(
       children: [
         Container(
@@ -81,23 +95,13 @@ class _SpotDetailsState extends State<SpotDetails> {
               width: 3
             )
           ),
-          // borderRadius: BorderRadius.only(
-          //   topLeft: Radius.circular(15),
-          //   topRight: Radius.circular(15),
-          // ),
-
           child: Image.network(
             '${widget.image}',
-            height: 230,
+            height: 300,
             width: double.maxFinite,
             // fit: BoxFit.cover,
           ),
         ),
-        SizedBox(height: 10,),
-        // GestureDetector(
-        //     onTap: () => _locationModal(),
-        //     child: socialButton(context, 'assets/icons/marker100.png',
-        //         'Shop Location', Color(0xffFF3F00))),
         SizedBox(height: 10,),
         Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -105,25 +109,66 @@ class _SpotDetailsState extends State<SpotDetails> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
                 '${widget.spotname}',
-                style: TextStyle(color: Colors.grey[700], fontSize: 30),
+                style: TextStyle(color: Colors.grey[700], fontSize: 25),
               ),
-              //     SizedBox(height: 5),
-              //     Text(
-              //   '${widget.latitude}',
-              //   style: TextStyle(color: Colors.grey[700], fontSize: 30),
-              // ),
-              //     SizedBox(height: 5),
-              //     Text(
-              //   '${widget.longitude}',
-              //   style: TextStyle(color: Colors.grey[700], fontSize: 30),
-              // ),
                   Divider(),
               Text(
                 '${widget.description}',
                 textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: 14)
               ),
-            ]))
-      ],
+                  Divider(),
+                  travelProvider.hotelAndResortWithTravelSpotList.length<1?Container():Text(
+                    'Hotel And Resort',
+                    style: TextStyle(color: Colors.green,fontSize: 20),
+              ),
+                  Divider(),
+                  travelProvider.hotelAndResortWithTravelSpotList.length<1?Container():Container(
+                    child: ListView.builder(
+                        physics: ScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: travelProvider.hotelAndResortWithTravelSpotList.length,
+                        itemBuilder: (context,index){
+                          return Container(
+                            color: Colors.grey[100],
+                            margin: EdgeInsets.symmetric(vertical: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 3),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${travelProvider.hotelAndResortWithTravelSpotList[index].hrname}",
+                                    style: TextStyle(color: Colors.grey[900], fontSize: 20)
+                                ),
+                                SizedBox(height: 5,),
+                                Text("${travelProvider.hotelAndResortWithTravelSpotList[index].hraddress}",
+                                    style: TextStyle(color: Colors.grey[800], fontSize: 15)
+                                ),
+                                Divider(),
+                                Text("Facilities : ",
+                                    style: TextStyle(color: Colors.grey[800], fontSize: 20)
+                                ),
+                                SizedBox(height: 2,),
+                                Text("${travelProvider.hotelAndResortWithTravelSpotList[index].hrfacilities}",
+                                    style: TextStyle(color: Colors.grey[800], fontSize: 14)
+                                ),
+                                SizedBox(height: 5,),
+
+                                Text("Description : ",
+                                    style: TextStyle(color: Colors.grey[800], fontSize: 20)
+                                ),
+                                SizedBox(height: 2,),
+                                Text("${travelProvider.hotelAndResortWithTravelSpotList[index].hrdescription}",
+                                    style: TextStyle(color: Colors.grey[800], fontSize: 14)
+                                ),
+
+                              ],
+                            ),
+                          );
+                        }),
+                  )
+
+                ])),
+        ],
     );
   }
   ///Location Modal

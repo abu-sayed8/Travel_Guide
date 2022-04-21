@@ -39,13 +39,8 @@ int _counter=0;
     );
   }
   Widget _bodyUI( TravelProvider travelProvider){
-    return ListView.builder(
-        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //   crossAxisCount: 1,
-        //   mainAxisExtent: 350,
-        //   mainAxisSpacing: 10,
-        //   crossAxisSpacing: 10
-        // ),
+    return travelProvider.travelSpotList.length<1?Center(child: Text('No Data Found Yet ??',style: TextStyle(color: Colors.amber,fontSize: 25,),),)
+        :ListView.builder(
         itemCount: travelProvider.travelSpotList.length,
         // itemCount: 1,
         itemBuilder: (context,index){
@@ -56,13 +51,14 @@ int _counter=0;
                   spotname:travelProvider.travelSpotList[index].spotname,
                   image:travelProvider.travelSpotList[index].image,
                   description:travelProvider.travelSpotList[index].description,
+                  travelspot:travelProvider.travelSpotList[index].travelspot,
                   longitude:travelProvider.travelSpotList[index].longitude,
                   latitude: travelProvider.travelSpotList[index].latitude,
                 )));
               },
               child:Container(
                   margin: EdgeInsets.only(top:10,bottom: 16,left: 10,right: 10),
-                  height: 350,
+                  height: 400,
                   width: double.maxFinite,
                   // padding: EdgeInsets.all(16),
 
@@ -87,9 +83,9 @@ int _counter=0;
                         ),
                         child: Image.network(
                           '${travelProvider.travelSpotList[index].image}',
-                          height: 200,
+                          height: 250,
                           width: double.maxFinite,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
                         ),
                       ),
                       SizedBox(height:10),
@@ -98,7 +94,7 @@ int _counter=0;
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${travelProvider.travelSpotList[index].spotname}',style: TextStyle(color: Colors.grey[700],fontSize: 30),),
+                            Text('${travelProvider.travelSpotList[index].spotname}',style: TextStyle(color: Colors.grey[700],fontSize: 22),maxLines: 1,),
                             SizedBox(height:5),
                             Text('${travelProvider.travelSpotList[index].description}',maxLines: 4,textAlign: TextAlign.justify,),
                           ],

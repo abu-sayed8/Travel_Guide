@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/pages/about_us.dart';
 import 'package:travel_app/pages/favourite_place.dart';
+import 'package:travel_app/pages/hotel-and-resort.dart';
 import 'package:travel_app/pages/region_page.dart';
 import 'package:travel_app/widgets/appbardecoration.dart';
 import 'package:travel_app/widgets/static_variables.dart';
@@ -47,131 +48,153 @@ class _HomePageState extends State<HomePage> {
           ),
           ListTile(
             onTap: () {
-              Navigator.push;
+              Navigator.pop(context);
             },
             leading: Icon(
               Icons.home,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
               "Home",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
             onTap: () {
-              Navigator.push;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => RegionPage(
+                index:0,
+                region:StaticVariables.HomeData[0],
+              )));
             },
             leading: Icon(
               Icons.my_location_sharp,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
               "Travel Bangladesh",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
             onTap: () {
-              Navigator.push;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => RegionPage(
+                index:1,
+                region:StaticVariables.HomeData[1],
+              )));
             },
             leading: Icon(
               Icons.language,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
               "Travel World",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
             onTap: () {
-              Navigator.push;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => FavouritePlace()));
             },
             leading: Icon(
               Icons.featured_play_list,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
               "Travel Blog",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
             onTap: () {
-              Navigator.push;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => FavouritePlace()));
             },
             leading: Icon(
               Icons.star,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
               "Favoriate Place",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
             onTap: () {
-              Navigator.push;
+            Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HotelAndResort()));
             },
             leading: Icon(
               Icons.hotel_outlined,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
-              "Hotel and Resort",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              "Hotel & Resort",
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
-            onTap: () {
-              Navigator.push;
+            onTap: () async{
+              if (await canLaunch('https://www.youtube.com/')) {
+              await launch('https://www.youtube.com/results?search_query=travel+video');};
             },
             leading: Icon(
               Icons.video_collection_outlined,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
               "Video",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
             onTap: () {
-              Navigator.push;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AboutUs()));
             },
             leading: Icon(
               Icons.save,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
-              "Savings Information",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+
+              "About Us",
+              style: TextStyle(fontSize: 18),
             ),
           ),
-          SizedBox(
-            height: 5,
+          Divider(
+            height: 1,
           ),
           ListTile(
             onTap: () {
@@ -181,9 +204,10 @@ class _HomePageState extends State<HomePage> {
               Icons.share,
               color: Colors.green,
             ),
+            trailing: Icon(Icons.arrow_forward_ios,),
             title: Text(
-              "Share The Application",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              "Share ",
+              style: TextStyle(fontSize: 18),
             ),
           ),
         ],
@@ -324,11 +348,15 @@ class _HomePageState extends State<HomePage> {
               index:index,
               region:StaticVariables.HomeData[index],
             )));
-          }if (index == 2 || index == 3) {
+          }
+          if (index == 2) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HotelAndResort(
+            )));
+          }
+          if (index == 3) {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => FavouritePlace(
-              // index:index,
-              // region:StaticVariables.HomeData[index],
             )));
           }
         if (index == 4) {
@@ -356,9 +384,9 @@ class _HomePageState extends State<HomePage> {
                     : index == 1
                     ? Icons.language
                     : index == 2
-                    ? Icons.featured_play_list
+                    ? Icons.hotel_outlined
                     : index == 3
-                    ? Icons.star
+                    ? Icons.favorite
                     : index == 4
                     ? Icons.video_library_sharp
                     : Icons.supervised_user_circle_outlined,

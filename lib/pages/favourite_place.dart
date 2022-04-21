@@ -53,7 +53,7 @@ class _FavouritePlaceState extends State<FavouritePlace> {
               },
               child:Container(
                   margin: EdgeInsets.only(top:10,bottom: 16,left: 10,right: 10),
-                  height: 350,
+                  height: 400,
                   width: double.maxFinite,
                   // padding: EdgeInsets.all(16),
 
@@ -78,7 +78,7 @@ class _FavouritePlaceState extends State<FavouritePlace> {
                         ),
                         child: Image.network(
                           '${travelProvider.favouriteSpotList[index].image}',
-                          height: 200,
+                          height: 250,
                           width: double.maxFinite,
                           fit: BoxFit.cover,
                         ),
@@ -89,7 +89,7 @@ class _FavouritePlaceState extends State<FavouritePlace> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${travelProvider.favouriteSpotList[index].spotname}',style: TextStyle(color: Colors.grey[700],fontSize: 30),),
+                            Text('${travelProvider.favouriteSpotList[index].spotname}',style: TextStyle(color: Colors.grey[700],fontSize: 22),maxLines: 1,),
                             SizedBox(height:5),
                             Text('${travelProvider.favouriteSpotList[index].description}',maxLines: 4,textAlign: TextAlign.justify,),
                           ],
