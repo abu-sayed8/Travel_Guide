@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_app/model/ttheme_model.dart';
-import 'package:travel_app/pages/homepage.dart';
+import 'package:travel_app/splesh_screanf.dart';
 import 'package:travel_app/travel_provider/travel_provider.dart';
 
 // void main() {
@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
               hintColor: Colors.white,
             ),
           debugShowCheckedModeBanner: false,
-          home: HomePage(),
+          home: spleshScreanflutter(),
         ));
   }
 }

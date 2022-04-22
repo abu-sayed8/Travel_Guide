@@ -213,11 +213,11 @@ class TravelProvider extends ChangeNotifier {
     }
   }
   /// Get Hotel And Resort With Travel Spot
-  Future<void> getHotelAndResortWithTravelSpot(String TravelSpot) async {
+  Future<void> getHotelAndResortWithTravelSpot(String travelspot) async {
     try {
       await FirebaseFirestore.instance
           .collection('HotelAndResort')
-          .where('travelspot', isEqualTo: hotelAndResortModel.travelspot)
+          .where('travelspot', isEqualTo: travelspot)
           .get()
           .then((snapShot) {
         _hotelAndResortWithTravelSpotList.clear();
