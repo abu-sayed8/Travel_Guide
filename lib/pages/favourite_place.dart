@@ -51,52 +51,71 @@ class _FavouritePlaceState extends State<FavouritePlace> {
                   latitude: travelProvider.favouriteSpotList[index].latitude,
                 )));
               },
-              child:Container(
-                  margin: EdgeInsets.only(top:10,bottom: 16,left: 10,right: 10),
-                  height: 400,
-                  width: double.maxFinite,
-                  // padding: EdgeInsets.all(16),
+              child:Stack(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(top:10,bottom: 16,left: 10,right: 10),
+                      height: 400,
+                      width: double.maxFinite,
+                      // padding: EdgeInsets.all(16),
 
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            blurRadius: 5.0,
-                            spreadRadius: 3.0,
-                            offset: Offset(0,3)
-                        )
-                      ]
-                  ),
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                        ),
-                        child: Image.network(
-                          '${travelProvider.favouriteSpotList[index].image}',
-                          height: 250,
-                          width: double.maxFinite,
-                          fit: BoxFit.cover,
-                        ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                blurRadius: 5.0,
+                                spreadRadius: 3.0,
+                                offset: Offset(0,3)
+                            )
+                          ]
                       ),
-                      SizedBox(height:10),
-                      Padding(
-                        padding:EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('${travelProvider.favouriteSpotList[index].spotname}',style: TextStyle(color: Colors.grey[700],fontSize: 22),maxLines: 1,),
-                            SizedBox(height:5),
-                            Text('${travelProvider.favouriteSpotList[index].description}',maxLines: 4,textAlign: TextAlign.justify,),
-                          ],
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                            ),
+                            child: Image.network(
+                              '${travelProvider.favouriteSpotList[index].image}',
+                              height: 250,
+                              width: double.maxFinite,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(height:10),
+                          Padding(
+                            padding:EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('${travelProvider.favouriteSpotList[index].spotname}',style: TextStyle(color: Colors.grey[700],fontSize: 22),maxLines: 1,),
+                                SizedBox(height:5),
+                                Text('${travelProvider.favouriteSpotList[index].description}',maxLines: 4,textAlign: TextAlign.justify,),
+                              ],
+                            ),
+                          )
+                        ],
+                      )),
+                  Positioned(
+                    top: 20,
+                    right: 20,
+                      child: IconButton(
+
+                        onPressed: ()async{
+                          await travelProvider.removeFavouriteTravelSpot(context,'${travelProvider.favouriteSpotList[index].id}');
+
+                        },
+                        icon: CircleAvatar(
+                          backgroundColor: Colors.red,
+                          child: Icon(Icons.clear,color: Colors.white,),
                         ),
                       )
-                    ],
-                  ))
+                  )
+                ],
+              )
           );
         });
   }

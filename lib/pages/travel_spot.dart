@@ -48,9 +48,11 @@ int _counter=0;
               onTap: (){
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => SpotDetails(
+                  id:travelProvider.travelSpotList[index].id,
                   spotname:travelProvider.travelSpotList[index].spotname,
                   image:travelProvider.travelSpotList[index].image,
                   description:travelProvider.travelSpotList[index].description,
+                  travelregion:travelProvider.travelSpotList[index].travelregion,
                   travelspot:travelProvider.travelSpotList[index].travelspot,
                   longitude:travelProvider.travelSpotList[index].longitude,
                   latitude: travelProvider.travelSpotList[index].latitude,

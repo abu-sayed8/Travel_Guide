@@ -4,19 +4,24 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_app/travel_provider/travel_provider.dart';
 import 'package:travel_app/widgets/appbardecoration.dart';
+import 'package:travel_app/widgets/notification_widgets.dart';
 
 class SpotDetails extends StatefulWidget {
+  String? id;
   String? spotname;
   String? image;
   String? description;
+  String? travelregion;
   String? travelspot;
   String? latitude;
   String? longitude;
 
   SpotDetails({
+    this.id,
     this.spotname,
     this.image,
     this.description,
+    this.travelregion,
     this.travelspot,
     this.latitude,
     this.longitude,
@@ -72,7 +77,35 @@ class _SpotDetailsState extends State<SpotDetails> {
     final TravelProvider travelProvider=Provider.of<TravelProvider>(context);
     if(_counter==0)_customInitState(travelProvider);
     return Scaffold(
-      appBar: appBarDecoration(context, 'Spot Details'),
+      appBar: AppBar(
+        title: Text('Spot Details',style: TextStyle(color: Colors.white),),
+        centerTitle: true,
+        actions: [
+          IconButton(
+          onPressed: (){
+            travelProvider.loadingMgs= 'Submitting information...';
+            showLoadingDialog(context,travelProvider);
+            travelProvider.addFavouriteTravelSpot(
+                context,
+                travelProvider.travelModel,
+                '${widget.id}',
+                '${widget.spotname}',
+                '${widget.description}',
+                '${widget.image}',
+                '${widget.travelregion}',
+                '${widget.travelspot}',
+                '${widget.latitude}',
+                '${widget.longitude}',
+            );
+    //             .then((value){
+    //           Navigator.push(context,MaterialPageRoute(builder: (context)=>MyCartPage()));
+    // }
+    // );
+
+    }, icon: Icon(Icons.favorite))
+
+        ],
+      ),
       body: _bodyUI(travelProvider),
         floatingActionButton: new FloatingActionButton(
             elevation: 0.0,

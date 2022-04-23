@@ -148,6 +148,65 @@ class TravelProvider extends ChangeNotifier {
       )));
     });
   }
+  /// add Favourite travel spots
+  Future<void> addFavouriteTravelSpot(
+      BuildContext context,
+      TravelModel travelModel,
+      String id,
+      String spotname,
+      String description,
+      String image,
+      String travelregion,
+      String travelspot,
+      String latitude,
+      String longitude,
+      ) async {
+    final int timestemp = DateTime.now().microsecondsSinceEpoch;
+    final String submitDate = DateFormat("dd-MMM-yyyy/hh:mm:aa")
+        .format(DateTime.now());
+
+    // firebase_storage.Reference storageReference = firebase_storage
+    //     .FirebaseStorage.instance.ref().child('Travel Spot Img').child(id);
+    // firebase_storage.UploadTask storageUploadTask = storageReference.putFile(imageFile);
+    // firebase_storage.TaskSnapshot taskSnapshot;
+    // storageUploadTask.then((value) {
+    //   taskSnapshot = value;
+    //   taskSnapshot.ref.getDownloadURL().then((newImageDownloadUrl) {
+    //     final image = newImageDownloadUrl;
+       try{
+         FirebaseFirestore.instance.collection('Favourite_travel_spots').doc(id).set({
+           'id': id,
+           'spotname': spotname,
+           'image': image,
+           'description': description,
+           'travelregion': travelregion,
+           'travelspot': travelspot,
+           'latitude': latitude,
+           'longitude': longitude,
+           'timestemp': timestemp.toString(),
+           'submitDate': submitDate.toString(),
+         });
+         Navigator.pop(context);
+       }
+       catch(e){
+         print(e.toString());
+       }
+
+    //   }, onError: (error) {
+    //     Navigator.pop(context);
+    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //         content: Text(
+    //           error.toString(),
+    //         )));
+    //   });
+    // }, onError: (error) {
+    //   Navigator.pop(context);
+    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //       content: Text(
+    //         error.toString(),
+    //       )));
+    // });
+  }
 /// Get travel spot
   Future<void> getTravelSpot(String travelspot) async {
     try {
@@ -249,7 +308,7 @@ class TravelProvider extends ChangeNotifier {
   Future<void> getFavouriteSpot() async {
     try {
       await FirebaseFirestore.instance
-          .collection('travel_spots')
+          .collection('Favourite_travel_spots')
           .where('id', isEqualTo: travelModel.id)
           .get()
           .then((snapShot) {
@@ -275,6 +334,17 @@ class TravelProvider extends ChangeNotifier {
     } catch (error) {
       error.toString();
     }
+  }
+  /// Remove Favourite Travel Spot
+  Future removeFavouriteTravelSpot(BuildContext context,String id) async {
+    try {
+      await FirebaseFirestore.instance.collection('Favourite_travel_spots').doc(id).delete();
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('You have successfully Remove')));
   }
   // Future<void> getTravelSpot() async {
   //   try {
