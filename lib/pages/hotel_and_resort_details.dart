@@ -70,7 +70,7 @@ class _HotelAndResortDetailsState extends State<HotelAndResortDetails> {
             '${widget.hrimage}',
             height: 300,
             width: double.maxFinite,
-            // fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         SizedBox(height: 10,),

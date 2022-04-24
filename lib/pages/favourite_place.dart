@@ -40,9 +40,12 @@ class _FavouritePlaceState extends State<FavouritePlace> {
               onTap: (){
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => SpotDetails(
+                  id:travelProvider.favouriteSpotList[index].id,
                   spotname:travelProvider.favouriteSpotList[index].spotname,
                   image:travelProvider.favouriteSpotList[index].image,
                   description:travelProvider.favouriteSpotList[index].description,
+                  travelregion:travelProvider.favouriteSpotList[index].travelregion,
+                  travelspot:travelProvider.favouriteSpotList[index].travelspot,
                   longitude:travelProvider.favouriteSpotList[index].longitude,
                   latitude: travelProvider.favouriteSpotList[index].latitude,
                 )));
@@ -78,7 +81,7 @@ class _FavouritePlaceState extends State<FavouritePlace> {
                               '${travelProvider.favouriteSpotList[index].image}',
                               height: 250,
                               width: double.maxFinite,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                           ),
                           SizedBox(height:10),

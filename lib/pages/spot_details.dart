@@ -192,7 +192,7 @@ class _SpotDetailsState extends State<SpotDetails> {
                       ),
                     ),
                   ),
-                  Divider(),
+                  SizedBox(height: 15,),
                   travelProvider.hotelAndResortWithTravelSpotList.length<1?Container():Text(
                     'Hotel And Resort',
                     style: TextStyle(color: Colors.green,fontSize: 20),
