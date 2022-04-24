@@ -106,9 +106,11 @@ class _HomePageState extends State<HomePage> {
             height: 1,
           ),
           ListTile(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => FavouritePlace()));
+            onTap: () async{
+              if (await canLaunch('https://www.youtube.com/')) {
+              await launch('https://www.youtube.com/results?search_query=travel+video');};
+              // Navigator.push(
+              //     context, MaterialPageRoute(builder: (context) => FavouritePlace()));
             },
             leading: Icon(
               Icons.featured_play_list,
@@ -156,24 +158,24 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 18),
             ),
           ),
-          Divider(
-            height: 1,
-          ),
-          ListTile(
-            onTap: () async{
-              if (await canLaunch('https://www.youtube.com/')) {
-              await launch('https://www.youtube.com/results?search_query=travel+video');};
-            },
-            leading: Icon(
-              Icons.video_collection_outlined,
-              color: Colors.green,
-            ),
-            trailing: Icon(Icons.arrow_forward_ios,),
-            title: Text(
-              "Video",
-              style: TextStyle(fontSize: 18),
-            ),
-          ),
+          // Divider(
+          //   height: 1,
+          // ),
+          // ListTile(
+          //   onTap: () async{
+          //     if (await canLaunch('https://www.youtube.com/')) {
+          //     await launch('https://www.youtube.com/results?search_query=travel+video');};
+          //   },
+          //   leading: Icon(
+          //     Icons.video_collection_outlined,
+          //     color: Colors.green,
+          //   ),
+          //   trailing: Icon(Icons.arrow_forward_ios,),
+          //   title: Text(
+          //     "Video",
+          //     style: TextStyle(fontSize: 18),
+          //   ),
+          // ),
           Divider(
             height: 1,
           ),
