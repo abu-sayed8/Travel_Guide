@@ -38,7 +38,8 @@ class _HotelAndResortState extends State<HotelAndResort> {
     );
   }
   Widget _bodyUi( TravelProvider travelProvider){
-    return ListView.builder(
+    return travelProvider.hotelAndResortList.length<1?Center(child: Text('No Hotel & Resort Found Yet ??',style: TextStyle(color: Colors.amber,fontSize: 25,),),)
+        :ListView.builder(
         itemCount: travelProvider.hotelAndResortList.length,
         // itemCount: 1,
         itemBuilder: (context,index){

@@ -30,13 +30,9 @@ class _FavouritePlaceState extends State<FavouritePlace> {
     );
   }
   Widget _bodyUI( TravelProvider travelProvider){
-    return ListView.builder(
-      // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      //   crossAxisCount: 1,
-      //   mainAxisExtent: 350,
-      //   mainAxisSpacing: 10,
-      //   crossAxisSpacing: 10
-      // ),
+    return travelProvider.favouriteSpotList.length<1?Center(child: Text('No Data Favourite Spot Found Yet ??',style: TextStyle(color: Colors.amber,fontSize: 25,),),)
+        :ListView.builder(
+
         itemCount: travelProvider.favouriteSpotList.length,
         // itemCount: 1,
         itemBuilder: (context,index){

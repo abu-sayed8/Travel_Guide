@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:travel_app/travel_provider/travel_provider.dart';
 import 'package:travel_app/widgets/appbardecoration.dart';
 import 'package:travel_app/widgets/notification_widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SpotDetails extends StatefulWidget {
   String? id;
@@ -97,10 +98,6 @@ class _SpotDetailsState extends State<SpotDetails> {
                 '${widget.latitude}',
                 '${widget.longitude}',
             );
-    //             .then((value){
-    //           Navigator.push(context,MaterialPageRoute(builder: (context)=>MyCartPage()));
-    // }
-    // );
 
     }, icon: Icon(Icons.favorite))
 
@@ -111,7 +108,24 @@ class _SpotDetailsState extends State<SpotDetails> {
             elevation: 0.0,
             child: new Icon(Icons.location_pin),
             backgroundColor: new Color(0xFFE57373),
-            onPressed: () => _locationModal(),
+            onPressed: () async{
+
+              // double lat=double.parse("${widget.latitude}");
+              // double.parse("${widget.longitude}");
+
+              final String googleMapslocationUrl =
+                  "https://www.google.com/maps/search/?api=1&query=${widget.latitude},${widget.longitude}";
+
+              final String encodedURl =
+              Uri.encodeFull(googleMapslocationUrl);
+
+              if (await canLaunch(encodedURl)) {
+              await launch(encodedURl);
+              } else {
+              print('Could not launch $encodedURl');
+              throw 'Could not launch $encodedURl';
+              }
+            },
         )
     );
   }
@@ -150,6 +164,34 @@ class _SpotDetailsState extends State<SpotDetails> {
                 textAlign: TextAlign.justify,
                   style: TextStyle(fontSize: 14)
               ),
+                  Divider(),
+                  widget.latitude == null
+                      ? Container()
+                      :
+                  Text("Location : ",
+                      style: TextStyle(color: Colors.grey[800], fontSize: 20)
+                  ),
+                  SizedBox(height: 2,),
+                  widget.latitude == null
+                      ? Container()
+                      : Container(
+                    height: 300,
+                    width: double.maxFinite,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: GoogleMap(
+                        compassEnabled: true,
+                        onMapCreated: _onMapCreated,
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(
+                              double.parse(widget.latitude ?? '0.0'),
+                              double.parse(widget.longitude ?? '0.0')),
+                          zoom: 15,
+                        ),
+                        markers: _marker,
+                      ),
+                    ),
+                  ),
                   Divider(),
                   travelProvider.hotelAndResortWithTravelSpotList.length<1?Container():Text(
                     'Hotel And Resort',
@@ -193,6 +235,7 @@ class _SpotDetailsState extends State<SpotDetails> {
                                 Text("${travelProvider.hotelAndResortWithTravelSpotList[index].hrdescription}",
                                     style: TextStyle(color: Colors.grey[800], fontSize: 14)
                                 ),
+
 
                               ],
                             ),
